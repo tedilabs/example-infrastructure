@@ -25,5 +25,5 @@ resource "aws_iam_account_alias" "this" {
 module "password_policy" {
   for_each = local.accounts
 
-  source = "../../modules/iam-password-policy"
+  source = "../../stacks/iam-password-policy"
 }
