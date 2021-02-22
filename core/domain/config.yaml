@@ -1,0 +1,37 @@
+delegation_sets:
+- primary
+- secondary
+
+public_zones:
+  primary:
+  - name: "x.tedilabs.com"
+    comment: "for private connections"
+  - name: "tedilabs.net"
+    comment: "for public connections"
+  secondary:
+  - name: "kr.tedilabs.net"
+    comment: "Region Domain(Korea)"
+  - name: "jp.tedilabs.net"
+    comment: "Region Domain(Japan)"
+
+private_zones:
+- name: "dev.tedilabs.local"
+  comment: "for private connections"
+- name: "tedilabs.local"
+  comment: "for private connections"
+  authorized_cross_account_vpc_associations:
+  - vpn_region: "ap-northeast-2"
+    vpc_id: "vpc-495e2151"
+
+certs:
+  amazon:
+  - name: "amazon-x-tedilabs-com"
+    subject_name: "x.tedilabs.com"
+    subject_alternative_names:
+    - "*.x.tedilabs.com"
+  - name: "amazon-tedilabs-net"
+    subject_name: "tedilabs.net"
+    subject_alternative_names:
+    - "*.tedilabs.net"
+    - "*.kr.tedilabs.net"
+    - "*.jp.tedilabs.net"
