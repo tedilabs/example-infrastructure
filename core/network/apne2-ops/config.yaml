@@ -1,0 +1,40 @@
+vpc:
+  name: ops
+  cidr: "10.234.0.0/16"
+  secondary_cidrs:
+  # EKS Pod CIDR
+  - "10.255.0.0/16"
+
+subnet_groups:
+  app_private:
+  - { cidr: "10.234.0.0/24", az_id: "apne2-az1" }
+  - { cidr: "10.234.1.0/24", az_id: "apne2-az2" }
+  - { cidr: "10.234.2.0/24", az_id: "apne2-az3" }
+  data_private_managed:
+  - { cidr: "10.234.100.0/24", az_id: "apne2-az1" }
+  - { cidr: "10.234.101.0/24", az_id: "apne2-az2" }
+  - { cidr: "10.234.102.0/24", az_id: "apne2-az3" }
+  data_private_self:
+  - { cidr: "10.234.103.0/24", az_id: "apne2-az1" }
+  - { cidr: "10.234.104.0/24", az_id: "apne2-az2" }
+  - { cidr: "10.234.105.0/24", az_id: "apne2-az3" }
+  net_private:
+  - { cidr: "10.234.230.0/24", az_id: "apne2-az1" }
+  - { cidr: "10.234.231.0/24", az_id: "apne2-az2" }
+  - { cidr: "10.234.232.0/24", az_id: "apne2-az3" }
+  net_public:
+  - { cidr: "10.234.233.0/24", az_id: "apne2-az1" }
+  - { cidr: "10.234.234.0/24", az_id: "apne2-az2" }
+  - { cidr: "10.234.235.0/24", az_id: "apne2-az3" }
+
+eip:
+- "ops-nat-gw/apne2-az1"
+- "ops-nat-gw/apne2-az3"
+
+nat_gateways:
+- name: "ops-nat-gw/apne2-az1"
+  az_id: "apne2-az1"
+  eip: "ops-nat-gw/apne2-az1"
+- name: "ops-nat-gw/apne2-az3"
+  az_id: "apne2-az3"
+  eip: "ops-nat-gw/apne2-az3"
